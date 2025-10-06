@@ -1,0 +1,7 @@
+{
+  "display": "standalone",
+  "lang": "en",
+  "name": "pdf-portal",
+  "short_name": "pdf-portal",
+  "start_url": "/?utm_source=web_app_manifest"
+}

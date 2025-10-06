@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.js": "/static/js/main.8a05311c.js",
+    "static/js/712.7c4d06d2.js": "/static/js/712.7c4d06d2.js",
+    "static/media/MaterialCommunityIcons.ttf": "/static/media/MaterialCommunityIcons.1fcc36272ea3e53d0031.ttf",
+    "index.html": "/index.html",
+    "serve.json": "/serve.json",
+    "manifest.json": "/manifest.json",
+    "main.8a05311c.js.map": "/static/js/main.8a05311c.js.map",
+    "712.7c4d06d2.js.map": "/static/js/712.7c4d06d2.js.map"
+  },
+  "entrypoints": [
+    "static/js/712.7c4d06d2.js",
+    "static/js/main.8a05311c.js"
+  ]
+}
