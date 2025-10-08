@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, TextInput, Button } from 'react-native-paper';
+import { Text, TextInput } from 'react-native-paper';
 import { AuthContext } from '../auth/AuthContext';
+import theme from '../theme';
+import StyledButton from '../components/StyledButton';
 
 export default function ProfileScreen() {
   const { user, changePassword } = useContext(AuthContext);
@@ -10,17 +12,17 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Roll No: {user?.rollNo}</Text>
-      <Text>Name: {user?.name}</Text>
+      <Text style={styles.label}>Roll No: <Text style={{ fontWeight: '700' }}>{user?.rollNo}</Text></Text>
+      <Text style={styles.label}>Name: <Text style={{ fontWeight: '700' }}>{user?.name}</Text></Text>
 
-      <Text style={{ marginTop: 12, marginBottom: 6 }}>Change Password</Text>
+      <Text style={{ marginTop: theme.spacing.md, marginBottom: theme.spacing.xs }}>Change Password</Text>
       <TextInput label="Old Password" value={oldP} onChangeText={setOldP} secureTextEntry />
-      <TextInput label="New Password" value={newP} onChangeText={setNewP} secureTextEntry style={{ marginTop: 8 }} />
-      <Button mode="contained" onPress={() => changePassword(oldP, newP)} style={{ marginTop: 12 }}>
+      <TextInput label="New Password" value={newP} onChangeText={setNewP} secureTextEntry style={{ marginTop: theme.spacing.sm }} />
+      <StyledButton onPress={() => changePassword(oldP, newP)} style={{ marginTop: theme.spacing.sm }}>
         Change Password
-      </Button>
+      </StyledButton>
     </View>
   );
 }
 
-const styles = StyleSheet.create({ container: { flex: 1, padding: 16 } });
+const styles = StyleSheet.create({ container: { flex: 1, padding: theme.spacing.md, backgroundColor: theme.colors.background }, label: { marginBottom: theme.spacing.xs, color: theme.colors.muted } });

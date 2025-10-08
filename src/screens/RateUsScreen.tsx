@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Linking, Platform } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
+import theme from '../theme';
+import StyledButton from '../components/StyledButton';
 
 export default function RateUsScreen() {
   const openStore = () => {
@@ -12,12 +14,10 @@ export default function RateUsScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ marginBottom: 12 }}>If you enjoy the app, please rate us!</Text>
-      <Button mode="contained" onPress={openStore}>
-        Open Store Page
-      </Button>
+      <Text style={{ marginBottom: theme.spacing.sm }}>If you enjoy the app, please rate us!</Text>
+      <StyledButton onPress={openStore}>Open Store Page</StyledButton>
     </View>
   );
 }
 
-const styles = StyleSheet.create({ container: { flex: 1, padding: 16 } });
+const styles = StyleSheet.create({ container: { flex: 1, padding: theme.spacing.md, backgroundColor: theme.colors.background } });

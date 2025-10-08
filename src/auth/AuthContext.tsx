@@ -12,6 +12,7 @@ type AuthContextType = {
   signIn: (rollNo: string, password: string) => Promise<void>;
   signOut: () => void;
   changePassword: (oldP: string, newP: string) => Promise<void>;
+  addAdmin: (rollNo: string) => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType>({
@@ -20,17 +21,21 @@ export const AuthContext = createContext<AuthContextType>({
   signIn: async () => {},
   signOut: () => {},
   changePassword: async () => {}
+  , addAdmin: async () => {}
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
+  // extraAdmins holds roll numbers (lowercased) that were granted admin by an admin
+  const [extraAdmins, setExtraAdmins] = useState<string[]>([]);
 
   // Mock sign-in: roll numbers starting with A are admins
   const signIn = async (rollNo: string, password: string) => {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 600));
-    const role = rollNo.toLowerCase().startsWith('a') ? 'admin' : 'student';
+    const lower = rollNo.toLowerCase();
+    const role = lower.startsWith('a') || extraAdmins.includes(lower) ? 'admin' : 'student';
     setUser({ rollNo, name: 'User ' + rollNo, role });
     setLoading(false);
   };
@@ -42,8 +47,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // no-op for mock
   };
 
+  const addAdmin = async (rollNo: string) => {
+    // mock: store in-memory list of promoted admins (lowercased)
+    const lower = rollNo.toLowerCase();
+    setExtraAdmins((prev) => (prev.includes(lower) ? prev : [...prev, lower]));
+    // in real app: call backend / firestore to persist role change
+    await new Promise((r) => setTimeout(r, 300));
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut, changePassword }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut, changePassword, addAdmin }}>
       {children}
     </AuthContext.Provider>
   );
