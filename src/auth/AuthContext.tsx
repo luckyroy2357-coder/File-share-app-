@@ -13,6 +13,8 @@ type AuthContextType = {
   signOut: () => void;
   changePassword: (oldP: string, newP: string) => Promise<void>;
   addAdmin: (rollNo: string) => Promise<void>;
+  removeAdmin: (rollNo: string) => Promise<void>;
+  listAdmins: () => string[];
 };
 
 export const AuthContext = createContext<AuthContextType>({
@@ -22,6 +24,8 @@ export const AuthContext = createContext<AuthContextType>({
   signOut: () => {},
   changePassword: async () => {}
   , addAdmin: async () => {}
+  , removeAdmin: async () => {}
+  , listAdmins: () => []
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -55,8 +59,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     await new Promise((r) => setTimeout(r, 300));
   };
 
+  const removeAdmin = async (rollNo: string) => {
+    const lower = rollNo.toLowerCase();
+    setExtraAdmins((prev) => prev.filter((r) => r !== lower));
+    await new Promise((r) => setTimeout(r, 200));
+  };
+
+  const listAdmins = () => {
+    return extraAdmins.slice();
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut, changePassword, addAdmin }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut, changePassword, addAdmin, removeAdmin, listAdmins }}>
       {children}
     </AuthContext.Provider>
   );

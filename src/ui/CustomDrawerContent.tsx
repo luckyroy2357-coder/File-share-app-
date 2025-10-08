@@ -27,6 +27,7 @@ export default function CustomDrawerContent(props: any) {
         <DrawerItem label="Search PDFs" onPress={() => props.navigation.navigate('Search')} />
   {isAdmin && <DrawerItem label="Upload PDF" onPress={() => props.navigation.navigate('UploadPdf')} />}
   {isAdmin && <DrawerItem label="Add Admin" onPress={() => props.navigation.navigate('AddAdmin')} />}
+  {isAdmin && <DrawerItem label="Manage Admins" onPress={() => props.navigation.navigate('AdminsList')} />}
         <DrawerItem label="Rate Us" onPress={() => props.navigation.navigate('RateUs')} />
         <DrawerItem label="Profile" onPress={() => props.navigation.navigate('Profile')} />
       </View>

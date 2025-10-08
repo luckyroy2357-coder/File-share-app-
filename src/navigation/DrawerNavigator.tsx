@@ -4,6 +4,7 @@ import CustomDrawerContent from '../ui/CustomDrawerContent';
 import MyPdfsScreen from '../screens/MyPdfsScreen';
 import UploadPdfScreen from '../screens/UploadPdfScreen';
 import AddAdminScreen from '../screens/AddAdminScreen';
+import AdminsListScreen from '../screens/AdminsListScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RateUsScreen from '../screens/RateUsScreen';
 
@@ -21,6 +22,7 @@ export default function DrawerNavigator() {
       <Drawer.Screen name="Profile" component={ProfileScreen} options={{ title: 'Profile' }} />
   <Drawer.Screen name="UploadPdf" component={UploadPdfScreen} options={{ title: 'Upload PDF' }} />
   <Drawer.Screen name="AddAdmin" component={AddAdminScreen} options={{ title: 'Add Admin' }} />
+  <Drawer.Screen name="AdminsList" component={AdminsListScreen} options={{ title: 'Manage Admins' }} />
     </Drawer.Navigator>
   );
 }
